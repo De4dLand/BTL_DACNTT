@@ -4,7 +4,7 @@ function Show_Feature() {
     return (
         <>
             <h4>Danh sách chức năng</h4>
-            <Dropdown className="d-inline  ">
+            <Dropdown className="d-inline ">
                 <Dropdown.Toggle id="dropdown-autoclose-true">
                     Tên Nhóm Chức Năng
                 </Dropdown.Toggle>

@@ -16,9 +16,14 @@ function Main_Content() {
                     <div className="col-lg-9 col-md-12 border">
                         <div className="row pb-3 border">
                             <div className="col-12 pb-1 border">
+                                <h3 className="d-flex justify-content-center">Biểu Mẫu Nhập Dữ Liệu</h3>
                                 {/* Hiển thị Biểu mẫu nhập thông tin ở đây */}
+                                <div>
+                                    <h4 className="d-flex justify-content-center ">Bảng nhập dữ liệu sẽ xuất hiện ở đây</h4>
+                                </div>
                             </div>
                             <div>
+                                <h3>Bảng Thông Tin</h3>
                                 {/* Hiển thị bảng Thông Tin ở đây */}
                             </div>
                         </div>
