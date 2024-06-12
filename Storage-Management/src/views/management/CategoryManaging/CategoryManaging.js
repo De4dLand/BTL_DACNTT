@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   CButton,
   CCard,
@@ -26,9 +26,15 @@ import {
   CTableHeaderCell,
   CTableRow,
 } from '@coreui/react'
-import { DocsExample } from 'src/components'
 
 const Managing = () => {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    fetch('http://localhost:8081/category')
+      .then(res => res.json())
+      .then(data => setData(data))
+      .catch(err => console.log(err));
+  })
   return (<>
     <CRow>
       <CCol xs={12}>
@@ -45,8 +51,6 @@ const Managing = () => {
                 aria-describedby="basic-addon1"
                 required
               />
-            </CInputGroup>
-            <CInputGroup className="mb-3">
               <CInputGroupText id="basic-addon1">Mô tả</CInputGroupText>
               <CFormInput
                 placeholder="Mô tả của Loại Sản Phẩm"
@@ -58,8 +62,6 @@ const Managing = () => {
           <CButton
             color={'primary'}
             variant="outline"
-          // active={state === 'active'}
-          // disabled={state === 'disabled'}
           >
             Nhập Dữ Liệu
           </CButton>
@@ -68,36 +70,30 @@ const Managing = () => {
       <CCol xs={12}>
         <CCard className="mb-4">
           <CCardHeader>
-            <strong>Bảng Dữ Liệu</strong> <small>Loại Sản Phẩm</small>
+            <strong>Bảng Dữ Liệu</strong> <small>
+            </small>
           </CCardHeader>
           <CCardBody>
             <CTable>
               <CTableHead>
                 <CTableRow>
                   <CTableHeaderCell scope="col">#</CTableHeaderCell>
-                  <CTableHeaderCell scope="col">Class</CTableHeaderCell>
-                  <CTableHeaderCell scope="col">Heading</CTableHeaderCell>
-                  <CTableHeaderCell scope="col">Heading</CTableHeaderCell>
+                  <CTableHeaderCell scope="col">Tên Loại Sản Phẩm</CTableHeaderCell>
+                  <CTableHeaderCell scope="col">Mô Tả</CTableHeaderCell>
+                  <CTableHeaderCell scope="col">Trạng Thái</CTableHeaderCell>
                 </CTableRow>
               </CTableHead>
               <CTableBody>
-                <CTableRow>
-                  <CTableHeaderCell scope="row">1</CTableHeaderCell>
-                  <CTableDataCell>Mark</CTableDataCell>
-                  <CTableDataCell>Otto</CTableDataCell>
-                  <CTableDataCell>@mdo</CTableDataCell>
-                </CTableRow>
-                <CTableRow>
-                  <CTableHeaderCell scope="row">2</CTableHeaderCell>
-                  <CTableDataCell>Jacob</CTableDataCell>
-                  <CTableDataCell>Thornton</CTableDataCell>
-                  <CTableDataCell>@fat</CTableDataCell>
-                </CTableRow>
-                <CTableRow>
-                  <CTableHeaderCell scope="row">3</CTableHeaderCell>
-                  <CTableDataCell colSpan={2}>Larry the Bird</CTableDataCell>
-                  <CTableDataCell>@twitter</CTableDataCell>
-                </CTableRow>
+                {data.map((d, i) =>
+                (
+                  <CTableRow>
+                    <CTableHeaderCell scope="row" key={i}>{i + 1}</CTableHeaderCell>
+                    <CTableDataCell>{d.Category_Name}</CTableDataCell>
+                    <CTableDataCell>{d.Category_Description}</CTableDataCell>
+                    <CTableDataCell>{d.status}</CTableDataCell>
+                  </CTableRow>
+                )
+                )}
               </CTableBody>
             </CTable>
           </CCardBody>
@@ -108,4 +104,4 @@ const Managing = () => {
   )
 }
 
-export default Managing
+export default Managing;
