@@ -56,6 +56,10 @@ const _nav = [
         component: CNavItem,
         name: 'Quản Lý Loại Sản Phẩm',
         to: '/management/CategoryManaging',
+      }, {
+        component: CNavItem,
+        name: 'Quản Lý Sản Phẩm',
+        to: '/management/ProductManaging',
       },
     ],
   },

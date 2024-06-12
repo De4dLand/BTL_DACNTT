@@ -26,47 +26,30 @@ import {
   CTableHeaderCell,
   CTableRow,
 } from '@coreui/react'
+import CategoryTypeForm from './CategoryTypeForm';
+import axios from 'axios';
 
 const Managing = () => {
   const [data, setData] = useState([]);
-  useEffect(() => {
+  const fetchData = () => {
     fetch('http://localhost:8081/category')
       .then(res => res.json())
       .then(data => setData(data))
       .catch(err => console.log(err));
+  };
+  useEffect(() => {
+    fetchData();
   })
+  const handleDelete = (tableName, id) => {
+    axios.delete(`http://localhost:8081/delete/${tableName}/${id}`)
+      .then(() => {
+        fetchData(); // Refresh data after deletion
+      })
+      .catch((err) => console.error(err));
+  };
   return (<>
     <CRow>
-      <CCol xs={12}>
-        <CCard className="mb-4">
-          <CCardHeader>
-            <strong>Quản Lý Loại Sản Phẩm</strong> <small></small>
-          </CCardHeader>
-          <CCardBody>
-            <CInputGroup className="mb-3">
-              <CInputGroupText id="basic-addon1">Tên Loại Sản Phẩm</CInputGroupText>
-              <CFormInput
-                placeholder="Tên Loại Sản Phẩm"
-                aria-label="Username"
-                aria-describedby="basic-addon1"
-                required
-              />
-              <CInputGroupText id="basic-addon1">Mô tả</CInputGroupText>
-              <CFormInput
-                placeholder="Mô tả của Loại Sản Phẩm"
-                aria-label="Username"
-                aria-describedby="basic-addon1"
-              />
-            </CInputGroup>
-          </CCardBody>
-          <CButton
-            color={'primary'}
-            variant="outline"
-          >
-            Nhập Dữ Liệu
-          </CButton>
-        </CCard>
-      </CCol>
+      <CategoryTypeForm></CategoryTypeForm>
       <CCol xs={12}>
         <CCard className="mb-4">
           <CCardHeader>
@@ -80,7 +63,7 @@ const Managing = () => {
                   <CTableHeaderCell scope="col">#</CTableHeaderCell>
                   <CTableHeaderCell scope="col">Tên Loại Sản Phẩm</CTableHeaderCell>
                   <CTableHeaderCell scope="col">Mô Tả</CTableHeaderCell>
-                  <CTableHeaderCell scope="col">Trạng Thái</CTableHeaderCell>
+                  <CTableHeaderCell scope="col">Chức Năng</CTableHeaderCell>
                 </CTableRow>
               </CTableHead>
               <CTableBody>
@@ -90,7 +73,10 @@ const Managing = () => {
                     <CTableHeaderCell scope="row" key={i}>{i + 1}</CTableHeaderCell>
                     <CTableDataCell>{d.Category_Name}</CTableDataCell>
                     <CTableDataCell>{d.Category_Description}</CTableDataCell>
-                    <CTableDataCell>{d.status}</CTableDataCell>
+                    <CTableDataCell>
+                      <CButton color="danger" onClick={() => handleDelete("tbCategory", d.Category_ID)}>Xóa</CButton>
+                      {/* <CButton color="danger" onClick={() => handleUpdate("tbCategory", d.Category_ID)}>Sửa</CButton> */}
+                    </CTableDataCell>
                   </CTableRow>
                 )
                 )}
