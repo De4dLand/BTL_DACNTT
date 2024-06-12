@@ -59,6 +59,11 @@ const _nav = [
       },
       {
         component: CNavItem,
+        name: 'Quản Lý',
+        to: '/base/managing',
+      },
+      {
+        component: CNavItem,
         name: 'Breadcrumb',
         to: '/base/breadcrumbs',
       },
