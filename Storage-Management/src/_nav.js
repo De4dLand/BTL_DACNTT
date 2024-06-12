@@ -44,6 +44,23 @@ const _nav = [
   },
   {
     component: CNavTitle,
+    name: 'Danh Sách Chức Năng',
+  },
+  {
+    component: CNavGroup,
+    name: 'Quản Lý Kho Hàng',
+    to: '/management',
+    icon: <CIcon icon={cilPuzzle} customClassName="nav-icon" />,
+    items: [
+      {
+        component: CNavItem,
+        name: 'Quản Lý Loại Sản Phẩm',
+        to: '/management/CategoryManaging',
+      },
+    ],
+  },
+  {
+    component: CNavTitle,
     name: 'Components',
   },
   {
@@ -56,11 +73,6 @@ const _nav = [
         component: CNavItem,
         name: 'Accordion',
         to: '/base/accordion',
-      },
-      {
-        component: CNavItem,
-        name: 'Quản Lý',
-        to: '/base/managing',
       },
       {
         component: CNavItem,
