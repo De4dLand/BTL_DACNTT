@@ -33,9 +33,25 @@ app.get('/:table', (req, res) => {
     })
 })
 
-app.post('/add', (req, res) => {
-    let data = { Category_Name: req.body.name, Category_Description: req.body.description };
+app.post('/tbCategory/add', (req, res) => {
+    let data = {
+        Category_Name: req.body.name,
+        Category_Description: req.body.description
+    };
     let sql = 'INSERT INTO tbCategory SET ?';
+    db.query(sql, data, (err, result) => {
+        if (err) throw err;
+        res.send('Data added...');
+    });
+});
+app.post('/tbProduct/add', (req, res) => {
+    let data = {
+        Product_Name: req.body.Product_Name,
+        Product_Description: req.body.Product_Description,
+        Product_Price: req.body.Product_Price,
+        Product_Image: req.body.Product_Image,
+    };
+    let sql = 'INSERT INTO tbProduct SET ?';
     db.query(sql, data, (err, result) => {
         if (err) throw err;
         res.send('Data added...');

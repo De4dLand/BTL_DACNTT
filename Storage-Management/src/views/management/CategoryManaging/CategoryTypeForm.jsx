@@ -9,7 +9,7 @@ const CategoryTypeForm = ({ fetchData }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:8081/add', {
+        axios.post('http://localhost:8081/tbCategory/add', {
             name: categoryName,
             description: description,
         })

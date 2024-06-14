@@ -5,7 +5,7 @@ const Colors = React.lazy(() => import('./views/theme/colors/Colors'))
 const Typography = React.lazy(() => import('./views/theme/typography/Typography'))
 //Management
 const ManageCategory = React.lazy(() => import('./views/management/CategoryManaging/CategoryManaging'))
-const ManageProduct = React.lazy(() => import('./views/management/CategoryManaging/CategoryManaging'))
+const ManageProduct = React.lazy(() => import('./views/management/ProductManaging/ProductManaging'))
 
 // Base
 const Accordion = React.lazy(() => import('./views/base/accordion/Accordion'))
